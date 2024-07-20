@@ -35,17 +35,17 @@ async function main() {
         'TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'
       )
       const xx: PublicKey = publicKey(
-        '4aWAvL52u4YmdiZARSG15hcqtv5tWupvGmUAUgE5QPVq'
+        'Dp9WjHx6zawSAngAxMHAxJoFAGKVZYGfY1JY1Y7baKGM'
       )
     
     const result = await createV1(umi, {
         mint: xx,
         authority: signer,
-        name: 'SLOT',
+        name: 'SLAP',
         uri:'https://raw.githubusercontent.com/cryptonexum/SLAPP/main/metadata.json',
         sellerFeeBasisPoints: percentAmount(0.3),
         splTokenProgram: SPL_TOKEN_2022_PROGRAM_ID,
-        tokenStandard: 2,
+      tokenStandard: 2,
       }).sendAndConfirm(umi)
     console.log(result)
 
