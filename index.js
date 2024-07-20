@@ -43,7 +43,7 @@ import {
   const mintKeypair = Keypair.generate();
   const mint = mintKeypair.publicKey;
   const transferFeeConfigAuthority = Keypair.generate();
-  const withdrawWithheldAuthority = Keypair.generate();
+  const withdrawWithheldAuthority =payer
 
   const extensions = [ExtensionType.TransferFeeConfig];
 
@@ -56,25 +56,25 @@ import {
 
 
   const mintLamports = await connection.getMinimumBalanceForRentExemption(mintLen);
-  const mintTransaction = new Transaction().add(
-      SystemProgram.createAccount({
-          fromPubkey: payer.publicKey,
-          newAccountPubkey: mint,
-          space: mintLen,
-          lamports: mintLamports,
-          programId: TOKEN_2022_PROGRAM_ID,
-      }),
-      createInitializeTransferFeeConfigInstruction(
-          mint,
-          payer.publicKey,
-          payer.publicKey,
-          feeBasisPoints,
-          maxFee,
-          TOKEN_2022_PROGRAM_ID
-      ),
-      createInitializeMintInstruction(mint, decimals, payer.publicKey, null, TOKEN_2022_PROGRAM_ID)
-  );
-  await sendAndConfirmTransaction(connection, mintTransaction, [payer, mintKeypair], undefined);
+  // const mintTransaction = new Transaction().add(
+  //     SystemProgram.createAccount({
+  //         fromPubkey: payer.publicKey,
+  //         newAccountPubkey: mint,
+  //         space: mintLen,
+  //         lamports: mintLamports,
+  //         programId: TOKEN_2022_PROGRAM_ID,
+  //     }),
+  //     createInitializeTransferFeeConfigInstruction(
+  //         mint,
+  //         payer.publicKey,
+  //         payer.publicKey,
+  //         feeBasisPoints,
+  //         maxFee,
+  //         TOKEN_2022_PROGRAM_ID
+  //     ),
+  //     createInitializeMintInstruction(mint, decimals, payer.publicKey, payer.publicKey, TOKEN_2022_PROGRAM_ID)
+  // );
+  // await sendAndConfirmTransaction(connection, mintTransaction, [payer, mintKeypair], undefined);
 
 
 
@@ -87,7 +87,7 @@ import {
 
 
 
-  // var newmint = new PublicKey("EBhhEPNgQRNSLfnX5rsbjRMeNG8uZPo8d2G5iKmKKmv6")
+  // var newmint = new PublicKey("4aWAvL52u4YmdiZARSG15hcqtv5tWupvGmUAUgE5QPVq")
   // const mintAmount = BigInt(10_000_000_000_000_000);
   // const sourceAccount = await createAccount(
   //     connection,
@@ -154,8 +154,8 @@ import {
 
 
 
-//   const newmint = new PublicKey("EBhhEPNgQRNSLfnX5rsbjRMeNG8uZPo8d2G5iKmKKmv6")
-//   const destinationAccount = new PublicKey("7N5vpodmgaZZ84TCg8UiB4xkJ1rZtZJ6aph7q3CZFoY6")
+//   const newmint = new PublicKey("4aWAvL52u4YmdiZARSG15hcqtv5tWupvGmUAUgE5QPVq")
+//   const destinationAccount = new PublicKey("AVvoq4HTqNZc7YigyzpknNAzU3h9xALZpQQSGbi1531E")
 //   const allAccounts = await connection.getProgramAccounts(TOKEN_2022_PROGRAM_ID, {
 //       commitment: 'confirmed',
 //       filters: [
@@ -176,17 +176,17 @@ import {
 //       }
 //   }
 // console.log(accountsToWithdrawFrom)
-  // await withdrawWithheldTokensFromAccounts(
-  //     connection,
-  //     payer,
-  //     newmint,
-  //     destinationAccount,
-  //     withdrawWithheldAuthority,
-  //     [],
-  //     accountsToWithdrawFrom,
-  //     undefined,
-  //     TOKEN_2022_PROGRAM_ID
-  // );
+//   await withdrawWithheldTokensFromAccounts(
+//       connection,
+//       payer,
+//       newmint,
+//       destinationAccount,
+//       withdrawWithheldAuthority,
+//       [],
+//       accountsToWithdrawFrom,
+//       undefined,
+//       TOKEN_2022_PROGRAM_ID
+//   );
 
 
 

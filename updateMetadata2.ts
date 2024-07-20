@@ -35,7 +35,7 @@ async function main() {
         'TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'
       )
       const xx: PublicKey = publicKey(
-        'EBhhEPNgQRNSLfnX5rsbjRMeNG8uZPo8d2G5iKmKKmv6'
+        '4aWAvL52u4YmdiZARSG15hcqtv5tWupvGmUAUgE5QPVq'
       )
     
     const result = await createV1(umi, {
